@@ -1,4 +1,5 @@
 import React from 'react';
+import CartWidget from './CartWidget';
 
 function NavBar() {
     return (
@@ -13,6 +14,7 @@ function NavBar() {
 
             <div className="col-4 text-end align-self-center">
                 <a href="#" className="text-decoration-none">Cart</a>
+                <CartWidget/>
             </div>
         </>
     )
