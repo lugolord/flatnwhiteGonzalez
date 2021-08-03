@@ -10,7 +10,7 @@ function App() {
       </header>
 
       <main className="row mt-3">
-        <ItemListContainer greeting="Aqui va a estar el SABOR! PRRRRR" />
+        <ItemListContainer greeting="Super carrito abajo je" />
       </main>
     </>
   );

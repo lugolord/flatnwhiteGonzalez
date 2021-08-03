@@ -1,1 +1,10 @@
+.contador {
+    border: solid black 1px;
+    padding: 10px;
+    border-radius: 10px;
+}
 
+.contador > .stock {
+    border: solid 1px;
+    border-radius: 10px;
+}
