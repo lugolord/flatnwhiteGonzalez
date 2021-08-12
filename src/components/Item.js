@@ -1,10 +1,16 @@
 import React from 'react';
 
+
+function showItemDetail() {
+    let itemDetail = document.getElementById('itemDetail');
+    itemDetail.style.opacity = 1;
+}
+
 function Item({item}) {
 
     return (
 
-        <div className="row mt-3">
+        <div className="row mt-3 g-0">
 
             {item.map((element, key) => {
 
@@ -25,7 +31,7 @@ function Item({item}) {
                                     <h5 className="card-title">{element.title}</h5>
                                     <p className="card-text">{element.description}</p>
                                     <p className="card-text"><small className="text-muted">${element.price}</small></p>
-                                    <button>click me</button>
+                                    <button className="btn btn-dark" onClick={showItemDetail}>+ info</button>
         
                                 </div>
         

@@ -1,6 +1,7 @@
 import './App.css';
 import NavBar from './components/NavBar'
 import ItemListContainer from './components/ItemListContainer';
+import ItemDetailContainer from './components/ItemDetailContainer';
 
 function App() {
   return (
@@ -9,8 +10,9 @@ function App() {
         <NavBar/>
       </header>
 
-      <main className="row mt-3">
-        <ItemListContainer greeting="Only God can judge me" />
+      <main className="row mt-3" id="main">
+        <ItemListContainer greeting="Bienvenido a flatnwhite"/>
+        <ItemDetailContainer/>
       </main>
     </>
   );
