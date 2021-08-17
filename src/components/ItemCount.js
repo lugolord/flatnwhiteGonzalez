@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 
+
 function ItemCount({stock, initial}) {
 
     function onAdd() {
@@ -15,11 +16,11 @@ function ItemCount({stock, initial}) {
     const [items, setItems] = useState(initialNum); //Establezco el estado inicial con el numero inicial pasado como parametro
 
     return (
-        <div className="col-4 contador offset-4">
+        <div className="col-4 mt-5">
 
-            <div className="col-10 text-center stock offset-1">{items /*MUESTRO INITIAL*/}</div>
+            <div className="col-10 text-center stock border rounded">{items /*MUESTRO INITIAL*/}</div>
 
-            <button type="button" className="btn btn-success col-5 mt-3 offset-1" onClick={() => { //BOTON SUMAR
+            <button type="button" className="btn btn-success col-5 mt-3" onClick={() => { //BOTON SUMAR
 
                 if (items < stock) {
                     setItems(items + 1);
@@ -35,7 +36,7 @@ function ItemCount({stock, initial}) {
 
             }}>-</button>
 
-            <button type="button" className="btn btn-info col-10 offset-1" onClick={onAdd}>agregar al carrito</button>
+            <button type="button" className="btn btn-dark col-10 mt-1" onClick={onAdd}>Agregar al carrito</button>
 
         </div>
     )

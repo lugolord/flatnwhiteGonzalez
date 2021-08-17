@@ -1,19 +1,9 @@
 import React from 'react';
-import ItemCount from "./ItemCount";
 import ItemList from './ItemList';
 
-function ItemListContainer({greeting}) {
+function ItemListContainer() {
     return (
-        <>
-            <div className="col-12 text-center">
-                <h1>{greeting}</h1>
-            </div>
-            
-            <ItemCount stock="10" initial="1"/>
-
-            <ItemList/>
-            
-        </>
+        <ItemList/>
     )
 }
 

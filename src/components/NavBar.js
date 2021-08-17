@@ -1,19 +1,25 @@
 import React from 'react';
 import CartWidget from './CartWidget';
+import { Link } from 'react-router-dom';
+
 
 function NavBar() {
+    
     return (
         <>
             <nav className="nav col-4 align-self-center">
-                <a className="nav-link active" aria-current="page" href="#">Shop</a>
-                <a className="nav-link disabled" href="#">Learn</a>
-                <a className="nav-link disabled" href="#">Visit us</a>
+                <Link to="/category/shop" className="nav-link active text-dark">Shop</Link>
+                <Link to="/category/learn" className="nav-link active text-dark" >Learn</Link>
+                <Link to="/category/visitUs" className="nav-link active text-dark" >Visit us</Link>
             </nav>
 
-            <img src="img/fnwLogo.png" className="col-4"/>
+            <Link to="/" className="col-4">
+                <img src="../img/fnwLogo.png" id="brand" alt="fnw brand"/>
+            </Link>
+            
 
             <div className="col-4 text-end align-self-center">
-                <a href="#" className="text-decoration-none">Cart</a>
+                <p className="d-inline">Cart</p>
                 <CartWidget/>
             </div>
         </>
