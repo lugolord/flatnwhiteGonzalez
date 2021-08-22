@@ -7,7 +7,7 @@ import Loader from './Loader';
 function getItems() {
 
     return (
-        fetch('../products.json').then((response) => { //PROMESA A DATOS LOCALES
+        fetch('/products.json').then((response) => { //PROMESA A DATOS LOCALES
             return response.json();
         }) 
     )

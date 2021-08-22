@@ -14,7 +14,7 @@ function NavBar() {
             </nav>
 
             <Link to="/" className="col-4">
-                <img src="../img/fnwLogo.png" id="brand" alt="fnw brand"/>
+                <img src="/img/fnwLogo.png" id="brand" alt="fnw brand"/>
             </Link>
             
 

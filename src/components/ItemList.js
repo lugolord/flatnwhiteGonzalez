@@ -5,10 +5,10 @@ import Loader from './Loader';
 
 //ARRAY DE OBJETOS CON LOS ITEMS
 const items = [
-                {id: 1, title: 'aeropress', description: 'descripcion aeropress', price: 10000, url: '../img/items/aeropress.jpg'},
-                {id: 2, title: 'aeropress', description: 'descripcion aeropress', price: 10000, url: '../img/items/aeropress.jpg'},
-                {id: 3, title: 'aeropress', description: 'descripcion aeropress', price: 10000, url: '../img/items/aeropress.jpg'},
-                {id: 4, title: 'aeropress', description: 'descripcion aeropress', price: 10000, url: '../img/items/aeropress.jpg'}
+                {id: 1, title: 'aeropress', description: 'descripcion aeropress', price: 10000, url: '/img/items/aeropress.jpg'},
+                {id: 2, title: 'aeropress', description: 'descripcion aeropress', price: 10000, url: '/img/items/aeropress.jpg'},
+                {id: 3, title: 'aeropress', description: 'descripcion aeropress', price: 10000, url: '/img/items/aeropress.jpg'},
+                {id: 4, title: 'aeropress', description: 'descripcion aeropress', price: 10000, url: '/img/items/aeropress.jpg'}
               ];
 
 

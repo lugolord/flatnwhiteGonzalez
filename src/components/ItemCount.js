@@ -1,14 +1,16 @@
 import React, {useState} from 'react';
 
 
-function ItemCount({stock, initial}) {
+function ItemCount({stock, initial, handleCounter}) {
 
-    function onAdd() {
+    function onAdd(info) {
 
         if (items !== 0 && items <= stock) { //Verifico que los items agregados al carrito no sean 0 y menores o iguales al stock disponible
             alert(`se agregaron ${items} al carrito`);
         }
 
+        handleCounter(info);
+        
     }
 
     const initialNum = parseInt(initial);  //Parseo el valor inicial pasado como parametro
@@ -36,7 +38,7 @@ function ItemCount({stock, initial}) {
 
             }}>-</button>
 
-            <button type="button" className="btn btn-dark col-10 mt-1" onClick={onAdd}>Agregar al carrito</button>
+            <button type="button" className="btn btn-dark col-10 mt-1" onClick={() => {onAdd(items)}}>Agregar al carrito</button>
 
         </div>
     )

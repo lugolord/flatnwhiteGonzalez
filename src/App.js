@@ -38,6 +38,10 @@ function App() {
             <ItemDetailContainer/>
           </Route>
 
+          <Route path="/cart">
+            <h1>Peralo´</h1>
+          </Route>
+
         </Switch>
 
       </div>
