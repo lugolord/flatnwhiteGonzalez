@@ -1,7 +1,9 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
+
 function ItemDetailWithBtn({item}) {
+
     return (
         <div className="card">
             <div className="row g-0">

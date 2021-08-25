@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import Loader from './Loader';
 
 
+
 function getItems() {
 
     return (
@@ -47,6 +48,7 @@ function ItemDetailContainer() {
     else {
         return (
             <ItemDetail item={item} /> 
+            
         )
     }
 }
