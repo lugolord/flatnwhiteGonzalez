@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import CartWidget from './CartWidget';
 import { Link } from 'react-router-dom';
+import { CartContext } from '../context/CartContext';
 
 
 function NavBar() {
+
+    let { totalQuantity } = useContext(CartContext);
     
     return (
         <>
@@ -17,11 +20,10 @@ function NavBar() {
                 <img src="/img/fnwLogo.png" id="brand" alt="fnw brand"/>
             </Link>
             
-
-            <div className="col-4 text-end align-self-center">
-                <p className="d-inline">Cart</p>
-                <CartWidget/>
-            </div>
+            <Link to="/cart" className="col-4 text-end align-self-center nav-link active text-dark">
+                {totalQuantity === 0 ? '' : <CartWidget/>}
+            </Link>
+            
         </>
     )
 }

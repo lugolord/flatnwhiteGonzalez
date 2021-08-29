@@ -39,6 +39,10 @@ function ItemDetailContainer() {
                 setItem(wantItItem)}); //ACTUALIZO EL ESTADO CON EL ITEM DESEADO
 
         }, 2000);
+
+        return (
+            setItem([])
+        )
     
     }, [id]);
 
