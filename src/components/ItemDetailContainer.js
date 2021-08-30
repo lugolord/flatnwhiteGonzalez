@@ -1,19 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { getFirestore } from '../firebase';
 import ItemDetail from './ItemDetail';
 import { useParams } from 'react-router-dom';
 import Loader from './Loader';
 
-
-
-function getItems() {
-
-    return (
-        fetch('/products.json').then((response) => { //PROMESA A DATOS LOCALES
-            return response.json();
-        }) 
-    )
-
-}
 
 function ItemDetailContainer() {
 
@@ -30,15 +20,25 @@ function ItemDetailContainer() {
             setLoader(false)
         }, 3000);
 
-        setTimeout(() => { //PARA SIMULAR RETRASOS DE RED
-            
-            getItems().then((data) => {
+        //ACCEDO A FIRESTORE
 
-                const wantItItem = data.items.find(element => element.id === parseInt(id));
-                
-                setItem(wantItItem)}); //ACTUALIZO EL ESTADO CON EL ITEM DESEADO
+        const db = getFirestore();
 
-        }, 2000);
+        const itemCollection = db.collection('cafeteras');
+
+        itemCollection.get().then(querySnapshot => {
+
+            if (querySnapshot.size === 0) {
+                console.log('no items');
+            }
+
+            const products = querySnapshot.docs.map(document => document.data()); //OBTENGO LA DATA DE LOS PRODUCTOS
+
+            const wantItItem = products.find(product => product.id === id); //BUSCO EL ITEM CON EL MISMO ID
+
+            setItem(wantItItem);
+
+        })
 
         return (
             setItem([])

@@ -19,11 +19,11 @@ function CartWithProducts({items, removeFromCart}) {
                 return (
                     <div className="col-12 border border-top-0 border-dark d-flex" key={key}>
 
-                        <img src={item.item.url} alt={item.item.description} className="col-3 mt-1" />
+                        <img src={item.item.img} alt={item.item.description} className="col-1 mt-1 cartImg" />
 
                         <div className="col-9">
 
-                            <h1>{item.item.title} x {item.quantity}</h1>
+                            <h1>{item.item.name} x {item.quantity}</h1>
 
                             <h2 className="mt-5">Subtotal: ${subtotal}</h2>
 

@@ -1,27 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { getFirestore } from '../firebase';
 import Item from './Item'
 import Loader from './Loader';
-
-
-//ARRAY DE OBJETOS CON LOS ITEMS
-const items = [
-                {id: 1, title: 'aeropress', description: 'descripcion aeropress', price: 10000, url: '/img/items/aeropress.jpg'},
-                {id: 2, title: 'aeropress', description: 'descripcion aeropress', price: 10000, url: '/img/items/aeropress.jpg'},
-                {id: 3, title: 'aeropress', description: 'descripcion aeropress', price: 10000, url: '/img/items/aeropress.jpg'},
-                {id: 4, title: 'aeropress', description: 'descripcion aeropress', price: 10000, url: '/img/items/aeropress.jpg'}
-              ];
-
-
-//DEFINO PROMESA
-function makePromise() {
-
-    return(
-        new Promise((resolve, reject) => {
-            setTimeout(() => {resolve(items)}, 2000);
-        })    
-    )
-
-}
 
 
 function ItemList() {
@@ -36,19 +16,29 @@ function ItemList() {
             setLoader(false)
         }, 3000);
 
-        makePromise().then((data) => { //REALIZO LA PROMESA
+        //ACCEDO A FIRESTORE
 
-            const itemsResult = data.map(item => item); //GUARDO CADA UNO DE LOS ITEMS EN UN NUEVO ARRAY
+        const db = getFirestore();
 
-            setArticles(itemsResult); //SETEO EL ESTADO CON LO OBTENIDO DE LA PROMESA
-        });
+        const itemCollection = db.collection('cafeteras');
+
+        itemCollection.get().then(querySnapshot => {
+
+            if (querySnapshot.size === 0) {
+                console.log('no items');
+            }
+            
+            const products = querySnapshot.docs.map(document => document.data());
+            
+            setArticles(products);
+        })
 
     }, []);
 
     if (loader) {
         return <Loader/>
     }
-    else{
+    else {
         return (    
             <Item item={articles}/>
         )
