@@ -1,7 +1,178 @@
+* {
+    font-family: 'Poppins', sans-serif;
+}
+
 #spinnerContainer {
-    height: 50vh;
+    height: 100vh;
+}
+
+.itemDetailName {
+    font-size: 40px;
+    line-height: 40px;
+}
+
+.itemList {
+    height: 400px;
+}
+
+.itemName {
+    color: #777777;
+}
+
+.itemPrice {
+    color: #48d112;
+}
+
+.imgDetail {
+    height: 500px;
+}
+
+.cart {
+    background-color: #333;
+    overflow-y: hidden;
+}
+
+.cart::-webkit-scrollbar {
+    display: none;
 }
 
 .cartImg {
-    height: 100px;
+    height: 320px;
+}
+
+.categoryFilter {
+    color: #707070;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.categoryFilter:hover {
+    color: #48d112;
+}
+
+.activeCategoryFilter {
+    color: #48d112;
+}
+
+#searchBtn {
+    cursor: pointer;
+}
+
+#searchBtn:hover {
+    color: #48d112;
+}
+
+#searchBar {
+    outline: none;
+    border: 0;
+}
+
+#closeSearchBar {
+    cursor: pointer;
+    color: #A5A0A0;
+}
+
+#closeSearchBar:hover {
+    color: #000000;
+}
+
+#cartSlider {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    min-height: 450px;
+}
+
+::-webkit-scrollbar {
+    height: 10px;
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey; 
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #181717; 
+    border-radius: 10px;
+}
+
+#footer {
+    background-color: #000000;
+}
+
+#notFound {
+    height: 100vh;
+}
+
+#notFound p {
+    font-size: 40px;
+}
+
+#cartEmpty {
+    height: 100vh;
+}
+
+#noResults {
+    height: 100vh;
+}
+
+#noResultsP {
+    font-size: 30px;
+}
+
+#emptyLearn {
+    height: 100vh;
+}
+
+#emptyLearn p {
+    font-size: 30px;
+}
+
+#emptyVisitUs {
+    height: 100vh;
+}
+
+#emptyVisitUs p {
+    font-size: 30px;
+}
+
+#cartEmptyText {
+    font-size: 30px;
+}
+
+.cartLink {
+    text-decoration: none;
+    color: #6c757d;
+}
+
+.cartLink:hover {
+    color: #000000;
+}
+
+.activeCartLink {
+    color: #000000;
+}
+
+.navLink {
+    color: #6c757d;
+    text-decoration: none;
+}
+
+.navLink:hover {
+    color: #000000;
+}
+
+.activeNavLink {
+    color: #000000;
+}
+
+.itemDescription {
+    max-height: 200px;
+    overflow-y: scroll;
+}
+
+.itemDescription::-webkit-scrollbar {
+    height: 0;
+    width: 0;
 }

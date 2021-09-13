@@ -1,32 +1,32 @@
 import React, { useState, useEffect } from 'react';
-import { getFirestore } from '../firebase';
 import ItemDetail from './ItemDetail';
-import { useParams } from 'react-router-dom';
 import Loader from './Loader';
+import NotFound from './NotFound';
+import { getFirestore } from '../firebase';
+import { useParams } from 'react-router-dom';
 
 
 function ItemDetailContainer() {
 
     const {id} = useParams();
 
-    const [item, setItem] = useState([]); //ESTADO INICIAL DE LA PROMESA
+    const [item, setItem] = useState([]); // ITEM DEL CUAL SE MOSTRARA EL DETALLE
 
-    const [loader, setLoader] = useState(true); //ESTADO LOADER
+    const [loader, setLoader] = useState(true); // MUESTRA/OCULTA LOADER
 
 
     useEffect(() => {
 
-        setTimeout(() => {  //CAMBIO EL ESTADO DEL LOADER
+        setTimeout(() => {  
             setLoader(false)
-        }, 3000);
+        }, 2000);
 
         //ACCEDO A FIRESTORE
-
         const db = getFirestore();
 
-        const itemCollection = db.collection('cafeteras');
+        const productsCollection = db.collection('products');
 
-        itemCollection.get().then(querySnapshot => {
+        productsCollection.get().then(querySnapshot => {
 
             if (querySnapshot.size === 0) {
                 console.log('no items');
@@ -49,10 +49,12 @@ function ItemDetailContainer() {
     if (loader) {
         return <Loader/>
     }
+    else if (item === undefined) {
+        return <NotFound/>
+    }
     else {
         return (
-            <ItemDetail item={item} /> 
-            
+            <ItemDetail item={item} />    
         )
     }
 }

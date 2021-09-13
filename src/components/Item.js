@@ -1,49 +1,38 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 
-function Item({item}) {
+function Item({ item }) {
 
         return (
 
-            <div className="row mt-5 g-0">
+            <div className="col-12 mt-5">
+
+                <div className="row">
     
-                {item.map((element, key) => {
-    
-                    return (
-    
-                        <div className="card col-3" key={key}>
-    
-                            <div className="row g-0">
-            
-                                <div className="col-5 col-sm-4">
-                                    <img src={element.img} className="img-fluid w-100" alt="x"/>
-                                </div>
-            
-                                <div className="col-7 col-sm-8">
-            
-                                    <div className="card-body">
-            
-                                        <h5 className="card-title">{element.name}</h5>
-                                        <p className="card-text">{element.description}</p>
-                                        <p className="card-text"><small className="text-muted">${element.price}</small></p>
-    
-                                        <Link to={`/item/${element.id}`}>
-                                            <button className="btn btn-dark">+ info</button>
-                                        </Link>
-            
-                                    </div>
-            
-                                </div>
-            
+                    {item.map((element, key) => {
+        
+                        return (
+
+                            <div className="col-12 col-sm-8 col-md-6 col-lg-3 offset-sm-2 offset-md-0 mb-5" key={key}>
+
+                                <img src={element.img} className="col-12 itemList" alt={element.name}/>
+
+                                <p className="mt-3 itemName">{element.name}</p>
+
+                                <p className="itemPrice">${element.price}</p>
+
+                                <Link to={`/item/${element.id}`}>
+                                    <button type="button" className="btn btn-outline-dark col-12" style={{borderRadius: 0}}>+ info</button>
+                                </Link>
+                                
                             </div>
-            
-                        </div>
-    
-                    )
-    
-                })}
-    
+
+                        )
+                    })}
+                    
+                </div>
+
             </div>
         )
 }

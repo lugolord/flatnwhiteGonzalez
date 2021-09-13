@@ -1,12 +1,12 @@
 import React, { useState, useContext } from 'react';
 import { CartContext } from '../context/CartContext';
 import ItemCount from './ItemCount';
-import ItemDetailWithBtn from './ItemDetailWithBtn';
+import Cart from './Cart';
 
 
-const stock = 10;
+const stock = 10; // STOCK DE PRODUCTOS
 
-function ItemDetail({item}) {
+function ItemDetail({ item }) {
 
     const { addToCart, notInCart } = useContext(CartContext) //USO EL CONTEXTO DEL CARRITO
 
@@ -20,44 +20,44 @@ function ItemDetail({item}) {
 
     function onAdd() {
 
-        if (counter > 0 && counter <= stock) { //Verifico que los items agregados al carrito no sean 0 y menores o iguales al stock disponible
+        // Verifico que los items agregados al carrito no sean 0 y menores o iguales al stock disponible
+        if (counter > 0 && counter <= stock) { 
 
-            const itemToAdd = { item, quantity: counter }; //FORMATO DEL OBJETO QUE PIDE EL DESAFIO
+            const itemToAdd = { item, quantity: counter }; 
 
             addToCart(itemToAdd);
 
             if (notInCart(itemToAdd)) {
-                alert(`se agregaron ${counter} al carrito`);
                 setAddedToCart(true);
             }
-
         }    
     }
 
-    if (addedToCart && counter > 0) { //SI EL ITEM NO ESTABA EN EL CARRITO Y LA CANTIDAD ES MAYOR A 0 MUESTRO EL BOTON FINALIZAR COMPRA
-        return <ItemDetailWithBtn item={item}/>;
+    if (addedToCart && counter > 0) { //SI EL ITEM NO ESTABA EN EL CARRITO Y LA CANTIDAD ES MAYOR A 0 MUESTRO EL CARRITO
+        return <Cart/>
     }
     
     return (
-        <div className="card">
-            <div className="row g-0">
-    
-                <div className="col-5 col-sm-4">
-                    <img src={item.img} className="img-fluid w-100" alt={item.name}/>
-                </div>
+        <div className="col-12 mt-4 mb-4">
+
+            <div className="row">
+
+                <img src={item.img} alt={item.name} className="col-10 col-md-6 col-lg-4 imgDetail offset-1 offset-md-0 offset-lg-2"/>
+
+                <div className="col-10 col-md-6 col-lg-4 offset-1 offset-md-0">
+
+                    <p className="itemDetailName">{item.name}</p>
+
+                    <p className="itemPrice">${item.price}</p>
                     
-                <div className="col-7 col-sm-8">
-    
-                    <div className="card-body" id="shopDetail">
-                        <h1 className="card-title">{item.name}</h1>
-                        <p className="card-text mt-5">{item.description}</p>
-                        <p className="card-text mt-5">${item.price}</p>                    
-                        <ItemCount stock={stock} counter={counter} handleCounter={handleCounter} id="itemCount" onAdd={onAdd}/>
-                    </div>
-    
+                    <p className="mt-3 mt-lg-0 text-center">{item.description}</p>
+
+                    <ItemCount stock={stock} counter={counter} handleCounter={handleCounter} id="itemCount" onAdd={onAdd} addedToCart={addedToCart}/>
+
                 </div>
-    
+
             </div>
+            
         </div>    
     )
 }

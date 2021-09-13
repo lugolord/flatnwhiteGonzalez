@@ -1,17 +1,16 @@
 import React, { useState } from 'react';
 
-
 export const CartContext = React.createContext({});
 
 export default function CartProvider({children}) {
 
-    const [items, setItems] = useState([]); //ARRAY DE OBJETOS DONDE ESTARAN LOS ITEMS SELECCIONADOS POR EL USUARIO
+    const [items, setItems] = useState([]); // ITEMS SELECCIONADOS POR EL USUARIO
 
-    let totalQuantity = 0; //CANTIDAD TOTAL DE ITEMS
+    let totalQuantity = 0; // CANTIDAD TOTAL DE ITEMS
 
-    items.forEach(item => totalQuantity += item.quantity); //ACTUALIZA LA CANTIDAD DE ITEMS PARA MOSTRAR EN LA NAVBAR
+    items.forEach(item => totalQuantity += item.quantity); // ACTUALIZA LA CANTIDAD DE ITEMS PARA MOSTRAR EN LA NAVBAR
 
-    function notInCart(item) { //VERIFICA SI EL ITEM YA ESTA EN EL CARRITO
+    function notInCart(item) { // VERIFICA SI EL ITEM YA ESTA EN EL CARRITO
         
         let searchItem = items.find(currentItem => currentItem.item.id === item.item.id);
 
@@ -20,13 +19,14 @@ export default function CartProvider({children}) {
         return searchItem;
     }
 
-    function addToCart(item) { //AGREGA AL CARRITO
+    function addToCart(item) { // AGREGA AL CARRITO
 
-        notInCart(item) ? setItems([...items, item]) : alert('producto ya en el carrito');
-
+        if (notInCart(item)) {
+            setItems([...items, item]);
+        }
     }
 
-    function removeFromCart(item) { //REMUEVE DEL CARRITO EL ITEM SELECCIONADO Y ACTUALIZA EL ESTADO
+    function removeFromCart(item) { // REMUEVE DEL CARRITO EL ITEM SELECCIONADO Y ACTUALIZA EL ESTADO
 
         let itemPosition = items.indexOf(item);
 

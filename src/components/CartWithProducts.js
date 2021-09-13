@@ -1,70 +1,89 @@
 import React from 'react';
 import { getFirestore } from '../firebase';
+import UserForm from './UserForm';
 
 
-function CartWithProducts({items, removeFromCart}) {
+function CartWithProducts({ items, removeFromCart, setText, setLoader }) {
 
-    function sendOrder(order, shopTotal) {
+    // ENVIA ORDEN A FIREBASE
+    function sendOrder(clientInfo, order, shopTotal, date) { 
 
         const database = getFirestore();
 
         const shopOrders = database.collection('shopOrders');
 
         const newOrder = {
-            buyer: 'Drake',
+            client: clientInfo,
             articles: order,
-            toPay: shopTotal
+            toPay: shopTotal,
+            orderDate: date
         }
 
-        shopOrders.add(newOrder).then(({id}) => console.log(id));
-
+        shopOrders.add(newOrder).then(({id}) => {
+            setText('Thanks for your purchase! Your order ID is: ' + id);
+            setLoader(false);
+        });
     }
 
-    let total = 0;
+    // TOTAL DE COMPRA
+    let total = 0; 
 
     return (
         <>
-            <h1>Your cart ({items.length})</h1>
+            <div className="cart col-12 col-md-7 col-lg-8">
 
-            <hr></hr>
+                <h1 className="text-light text-center mt-2">Your cart ({items.length})</h1>
 
-            {items.map((item, key) => {
+                <hr className="text-light"></hr>
 
-                let subtotal = item.item.price * item.quantity;
+                <div className="d-flex flex-row row flex-nowrap" id="cartSlider">
 
-                total = total + subtotal;
+                    {items.map((item, key) => {
 
-                return (
-                    <div className="col-12 border border-top-0 border-dark d-flex" key={key}>
+                        let subtotal = item.item.price * item.quantity;
 
-                        <img src={item.item.img} alt={item.item.description} className="col-1 mt-1 cartImg" />
+                        total = total + subtotal;
 
-                        <div className="col-9">
+                        return (
+                            <div className="d-flex flex-column col-10 col-sm-6 col-md-6 col-lg-3 offset-1 offset-sm-0" key={key}>
 
-                            <h1>{item.item.name} x {item.quantity}</h1>
+                                <img src={item.item.img} alt={item.item.description} className="mt-1 cartImg"/>
 
-                            <h2 className="mt-5">Subtotal: ${subtotal}</h2>
+                                <p className="text-light mt-3 text-center mb-0">{item.item.name}</p>
 
-                            <button type="button" className="btn btn-outline-danger col-3 mt-5" onClick={() => {
-                                removeFromCart(item);
-                            }}>
-                                Delete
-                            </button>
+                                <div className="row">
 
-                        </div>
+                                    <p className="text-light d-inline col-6 text-center">Qty: {item.quantity}</p>
 
-                    </div>
-                )
-            })}
+                                    <p className="text-light d-inline col-6 text-center">${subtotal}</p>
 
-            <h1 className="mt-5">Total: ${total}</h1>
+                                </div>
 
-            <button type="button" className="btn btn-outline-success col-3" onClick={() => {
-                sendOrder(items, total);
-            }}>
-                Close deal
-            </button>
 
+                                <button type="button" className="btn btn-outline-light" style={{borderRadius: 0}} onClick={() => {
+                                    removeFromCart(item);
+                                }}>
+                                    Delete
+                                </button>
+
+                            </div>
+                        )
+                    })}
+                </div>
+
+            </div>
+
+            <div className="col-12 col-md-5 col-lg-4 cartResume position-relative">
+                <div>
+            
+                    <p className="mt-3">Before we finish, we need a couple of details from you {'<3'}</p>
+
+                    <UserForm sendOrder={sendOrder} items={items} total={total} setText={setText} setLoader={setLoader}/>
+
+                    <h1 className="col-12 text-center mt-5">Total: ${total}</h1>
+
+                </div>
+            </div>
         </>
     );
 }

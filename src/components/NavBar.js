@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import CartWidget from './CartWidget';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { CartContext } from '../context/CartContext';
 
 
@@ -10,20 +10,23 @@ function NavBar() {
     
     return (
         <>
-            <nav className="nav col-4 align-self-center">
-                <Link to="/category/shop" className="nav-link active text-dark">Shop</Link>
-                <Link to="/category/learn" className="nav-link active text-dark" >Learn</Link>
-                <Link to="/category/visitUs" className="nav-link active text-dark" >Visit us</Link>
+            <nav className="nav col-12 col-sm-6 col-md-2 col-lg-3 order-2 order-sm-2 order-md-1 align-self-center">
+
+                <NavLink to="/category/shop" activeClassName="activeNavLink" className="navLink mx-3 mx-sm-2">Shop</NavLink>
+
+                <NavLink to="/category/learn" activeClassName="activeNavLink" className="navLink mx-3 mx-sm-2" >Learn</NavLink>
+
+                <NavLink to="/category/visitUs" activeClassName="activeNavLink" className="navLink mx-3 mx-sm-2" >Visit us</NavLink>
+                
             </nav>
 
-            <Link to="/" className="col-4">
-                <img src="/img/fnwLogo.png" id="brand" alt="fnw brand"/>
+            <Link to="/" className="col-12 col-sm-12 col-md-8 col-lg-6 mb-3 text-center order-md-2">
+                <img src="/img/fnwLogo.png" id="brand" alt="fnw brand" className="col-12 col-lg-9"/>
             </Link>
             
-            <Link to="/cart" className="col-4 text-end align-self-center nav-link active text-dark">
-                {totalQuantity === 0 ? '' : <CartWidget/>}
-            </Link>
-            
+            <NavLink to="/cart" activeClassName="activeCartLink" className="col-12 col-sm-6 col-lg-2 col-md-2 offset-sm-0 offset-md-0 offset-lg-1 order-3 order-sm-3 text-end align-self-center cartLink">
+                {totalQuantity === 0 ? 'Cart' : <CartWidget/>}
+            </NavLink>
         </>
     )
 }

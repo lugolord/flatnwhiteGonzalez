@@ -5,53 +5,84 @@ import ItemListContainer from './components/ItemListContainer';
 import ItemDetailContainer from './components/ItemDetailContainer';
 import CartProvider from './context/CartContext';
 import Cart from './components/Cart';
+import NotFound from './components/NotFound';
+import Footer from './components/Footer';
 
 
 function App() {
 
-  return (
-    <CartProvider>
-      <Router>
+  	return (
 
-        <div className="row mt-3">
-          <NavBar/>
-        </div>
+    	<CartProvider>
 
-        <div className="row mt-5">
+        	<Router>
 
-          <Switch>
+          		<header className="row mt-3 border-bottom">
+            		<NavBar/>
+          		</header>
 
-            <Route exact path="/">
-              <ItemListContainer/>
-            </Route>
+          		<div className="row">
 
-            <Route path="/category/shop">
-              <ItemListContainer/>
-            </Route>
+            		<Switch>
 
-            <Route path="/category/learn">
-              <h1>Nothing yet!</h1>
-            </Route>
+              			<Route exact path="/">
+                			<ItemListContainer/>
+              			</Route>
 
-            <Route path="/category/visitUs">
-              <h1>Wait for it!</h1>
-            </Route>
+              			<Route path="/category/shop">
+				  			<ItemListContainer/>
+              			</Route>
 
-            <Route path="/item/:id">
-              <ItemDetailContainer/>
-            </Route>
+              			<Route path="/category/learn">
+                			<div className="position-relative" id="emptyLearn">
+                  				<p className="position-absolute top-50 start-50 translate-middle text-center">Nothing yet!</p>
+                			</div>
+              			</Route>
 
-            <Route path="/cart">
-              <Cart/>
-            </Route>
+              			<Route path="/category/visitUs">
+                			<div className="position-relative" id="emptyVisitUs">
+                  				<p className="position-absolute top-50 start-50 translate-middle">Wait for it!</p>
+                			</div>
+              			</Route>
 
-          </Switch>
+              			<Route path="/item/:id">
+                			<ItemDetailContainer/>
+              			</Route>
 
-        </div>
+              			<Route path="/cart">
+                			<Cart/>
+              			</Route>
 
-      </Router>
-    </CartProvider>
-  );
+						<Route path="/all">
+				  			<ItemListContainer/>
+              			</Route>
+
+						<Route path="/coffee">
+				  			<ItemListContainer/>
+              			</Route>
+
+						<Route path="/coffeeMakers">
+				  			<ItemListContainer/>
+              			</Route>
+
+						<Route path="/accessories">
+				  			<ItemListContainer/>
+              			</Route>  
+
+              			<Route path="*">
+                			<NotFound/>
+              			</Route>
+
+            		</Switch>
+
+          		</div>
+
+          		<Footer/>
+
+        	</Router>
+
+      	</CartProvider>
+  	);
 }
 
 export default App;
